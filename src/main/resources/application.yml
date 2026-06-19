@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/prepttracker}
+    username: ${DATABASE_USER:preptuser}
+    password: ${DATABASE_PASSWORD:preptpass}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration/user
+    baseline-on-migrate: false
+    schemas: prept_user
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+      expiration: ${JWT_EXPIRATION:86400000}
+      refresh-token:
+        expiration: ${JWT_REFRESH_EXPIRATION:604800000}
