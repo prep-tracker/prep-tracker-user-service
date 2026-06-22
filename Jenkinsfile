@@ -1,4 +1,4 @@
-@Library('jenkins-shared-library')
+@Library('jenkins-shared-library') _
 pipeline {
     agent any
     environment {
@@ -11,7 +11,7 @@ pipeline {
         stage('CI') {
             steps {
                 script {
-                    if(env.BRANCH_NAME.startsWith('feature/*')){
+                    if(env.BRANCH_NAME.startsWith('feature/')){
                         featureCi(
                             serviceName: 'user-service-test'
                         )
@@ -19,7 +19,7 @@ pipeline {
                         prValidation(
                             serviceName: 'user-service'
                         )
-                    }else if(env.BRANCH_NAME='main'){
+                    }else if(env.BRANCH_NAME == 'main'){
                         mainBuild(
                             serviceName: 'user-service'
                         )
