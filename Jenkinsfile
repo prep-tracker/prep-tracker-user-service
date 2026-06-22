@@ -1,4 +1,4 @@
-@Library('jenkins-shared-library') _
+@Library('prep-tracker-shared-library') _
 pipeline {
     agent any
     environment {
