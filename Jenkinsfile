@@ -13,7 +13,7 @@ pipeline {
                 script {
                     if(env.BRANCH_NAME.startsWith('feature/*')){
                         featureCi(
-                            serviceName: 'user-service'
+                            serviceName: 'user-service-test'
                         )
                     }else if(env.CHANGE_ID){
                         prValidation(
